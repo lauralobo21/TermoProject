@@ -3,3 +3,5 @@ laura 30
 pedro 10
 Lucas 20
 mario 10
+mateus 0
+alberto 10

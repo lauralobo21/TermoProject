@@ -9,12 +9,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class Termo extends Salvavel {
+    // Atributos
     private Jogador jogador;
     private Palavra palavraSecreta;
     private Dicionario dicionario;
     private boolean jogoEmAndamento;
     private int tentativasRestantes;
 
+    // Construtor
     public Termo() {
         this.jogador = null;
         this.palavraSecreta = null;
@@ -23,6 +25,7 @@ public class Termo extends Salvavel {
         this.tentativasRestantes = 0;
     }
 
+    // Métodos
     public void iniciarJogo (Jogador jogador) {
         this.jogador = jogador;
         this.palavraSecreta = dicionario.getPalavraAleatoria();
@@ -39,15 +42,18 @@ public class Termo extends Salvavel {
             throw new Exception("error: o jogo não está iniciado.");
         }
         
+        //cria um booleano
         boolean resultado;
         try {
+            //confere as regras da palavra atraves do metodo palpitar
             resultado = palavraSecreta.palpitar(palpite);
         } catch (Exception excecao) {
             System.out.println(excecao.getMessage()); 
             return false;
         }
         
-        if(!resultado) { // se o resultado for falso
+        // se o resultado for falso
+        if(!resultado) { 
             this.tentativasRestantes--;
             if(this.tentativasRestantes == 0) {
                 this.jogoEmAndamento = false;
@@ -63,13 +69,18 @@ public class Termo extends Salvavel {
         return resultado;
     }
 
+    // realiza um backup da última partida mais recente que não foi terminada
+    // logica parecida com a do ranking, mas adicionando em um .txt
     public void backup() {
         File arquivo = new File("Backup.txt");
+
         String textoArquivo = "";
         String CIANO_TEXT = "\u001B[96m";
         String RESET = "\u001B[0m";
+
         try {
-            textoArquivo = new String (Files.readAllBytes(arquivo.toPath())); //convertendo pra string
+            //convertendo pra string
+            textoArquivo = new String (Files.readAllBytes(arquivo.toPath())); 
         } catch(Exception excecao) {
             System.out.println(CIANO_TEXT + "Nenhum backup encontrado" + RESET);
             return;
@@ -96,14 +107,7 @@ public class Termo extends Salvavel {
             brEscritor.write(palavraSecreta.getPalavra());
             brEscritor.write("\n");
             brEscritor.write(String.valueOf(tentativasRestantes));
-
             brEscritor.close();
-            
-            // FileWriter arquivo = new FileWriter("Backup.txt");
-            // BufferedWriter escritor = new BufferedWriter(arquivo);
-            // escritor.write(jogador.getNome());
-            // escritor.write(palavraSecreta.getPalavra());
-            // escritor.write(tentativasRestantes);
             
         } catch(IOException e) {
             System.out.println(e.getMessage());

@@ -13,6 +13,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        // declaração para mudança de cor do texto de saída
         String RESET = "\u001B[0m";
         String BLACK_BG = "\u001B[40m";
         String GREEN_BG = "\u001B[42m";
@@ -25,11 +26,11 @@ public class Main {
         String NEGRITO_TEXT = "\u001B[1m";
         String ROXO = "\u001B[35m";
         
-        System.out.println(CIANO_TEXT + " - - - - - - - - - - - - - - - - - - - - -" + RESET);
-        System.out.println(RED_TEXT + "|    Bem-vindo(a) ao jogo T E R M O       |" + RESET);
-        System.out.println(CIANO_TEXT + " - - - - - - - - - - - - - - - - - - - - -\n" + RESET);
+        System.out.println(RED_TEXT + NEGRITO_TEXT + " - - - - - - - - - - - - - - - - - - - - -" + RESET);
+        System.out.println(RED_TEXT + NEGRITO_TEXT + "|    Bem-vindo(a) ao jogo T E R M O       |" + RESET);
+        System.out.println(RED_TEXT + NEGRITO_TEXT + " - - - - - - - - - - - - - - - - - - - - -\n" + RESET);
         System.out.println(ITALICO + CIANO_TEXT + "?   COMO FUNCIONA   ?" + RESET);
-        System.out.println(ITALICO + CIANO_TEXT + "O jogo consiste em adivinhar qual a palavra de SOMENTE 5 letras" + RESET);
+        System.out.println(ITALICO + CIANO_TEXT + "O jogo consiste em adivinhar qual a palavra secreta de " + NEGRITO_TEXT + "5 letras" + RESET);
         System.out.println(NEGRITO_TEXT + GREEN_BG + "A " + RESET + "Faz parte da palavra e está na posição correta");
         System.out.println(NEGRITO_TEXT + YELLOW_BG + "A " + RESET + "Faz parte da palavra mas não está na posição correta");
         System.out.println(NEGRITO_TEXT + "A " + RESET + "Não faz parte da palavra\n");
@@ -37,6 +38,7 @@ public class Main {
         System.out.print(ITALICO + CIANO_TEXT + "Digite o seu primeiro nome: " + RESET);
         String nome = scanner.nextLine();
         
+        //cria-se um novo jogo e um novo jogador
         Termo termo = new Termo();
         Jogador jogador = new Jogador(nome);
 
@@ -109,42 +111,3 @@ public class Main {
     }
 }
 
-// public class Main {
-//     public static void main(String[] args) {
-//         Jogador jogador = new Jogador("");
-
-//         /*  | Bem vinde ao jogo T E R M O.
-//             | Digite o seu primeiro nome:
-//         -----------------------------------
-//         //Laura
-//         -----------------------------------
-//         Digite: 
-//         iniciar -> para iniciar a partida
-//         ranking -> para ver o ranking
-//         trocar -> para trocar de jogador
-//         sair -> para sair da partida
-//         -----------------------------------
-//         //iniciar
-//         -----------------------------------
-//         Digite uma palavras de 5 letras. Restam 6 chances!
-//         ------------------------------------
-//         //viola
-//         ----------------------------------
-//         V I O L A
-//         Restam 5 chances!
-//         -----------------------------------
-//         //achar
-//         -----------------------------------
-//         V I O L A 
-//         A C H A R
-//         Restam 4 chances!
-//         ------------------------------------
-//         fisga
-//         ------------------------------------
-//         V I O L A 
-//         A C H A R
-//         F I S G A
-//         Restam 3 chances!
-// */
-//     }
-// }

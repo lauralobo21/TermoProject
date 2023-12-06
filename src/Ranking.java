@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Ranking {
+    // Métodos
     public static int getPontuacao(String nome) {
         // Lendo o arquivo Ranking.txt
         File arquivo = new File("Ranking.txt");
@@ -14,21 +15,23 @@ public class Ranking {
         }
         String textoArquivo = "";
         try {
-            textoArquivo = new String (Files.readAllBytes(arquivo.toPath())); //convertendo pra string
+            //convertendo pra string
+            textoArquivo = new String (Files.readAllBytes(arquivo.toPath())); 
         } catch(Exception excecao) {
             System.out.println("Erro ao ler o arquivo Ranking.txt");
         }
 
-        // split = sempre que encontra \n quebra em dois
         // para identificar o nome procurado
         //linha[0] = "Laura 30"
         //linha[1] = "Pedro 60"
+        // split = sempre que encontra \n quebra em dois
         String[] linhas = textoArquivo.split("\n");
         for(int i = 0; i<linhas.length; i++) {
             //lê até encontrar um espaço, que será o nome 
             String[] registro = linhas[i].split(" ");
             if(nome.equals(registro[0])) {
-                return Integer.parseInt(registro[1]); // mudando registro para int, pq é uma string
+                // mudando registro para int, pq é uma string
+                return Integer.parseInt(registro[1]); 
             }
         }
         //novo jogador que não esteja no ranking recebe pontuaçao 0
@@ -42,14 +45,13 @@ public class Ranking {
         //quebrando cada uma em registros e verifica:
         // se (nome == registro[0]) {
         //   registro[1] = pontuacao
-        // escrevo no temp.txt o registro (nome e pontuacao)
-        //
+        // escreve no temp.txt o registro (nome e pontuacao)
         // else { escrevo o registro no temp.txt}
         //apagar o ranking.txt
         //renomear o temp.txt para o ranking.txt
         
         File arquivo = new File("Ranking.txt");
-        
+        // se for um novo jogador
         if(!arquivo.exists()) {
             try {
                 arquivo.createNewFile();
@@ -109,7 +111,8 @@ public class Ranking {
         File arquivo = new File("Ranking.txt");
         String textoArquivo = "";
         try {
-            textoArquivo = new String (Files.readAllBytes(arquivo.toPath())); //convertendo pra string
+            //convertendo pra string
+            textoArquivo = new String (Files.readAllBytes(arquivo.toPath())); 
         } catch(Exception excecao) {
             System.out.println("Erro ao ler o arquivo Ranking.txt");
         }

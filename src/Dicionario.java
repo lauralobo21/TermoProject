@@ -4,25 +4,30 @@ import java.util.ArrayList;
 import java.lang.Math;
 
 public class Dicionario {
-    private ArrayList<Palavra> palavras;
+    // Atributo
+    private ArrayList<Palavra> palavras; 
 
+    // Construtor
     public Dicionario() {
         this.palavras = new ArrayList<Palavra>();
         carregarPalavras();
     }
 
+    // Método para carregar as palavras do dicionario.txt
     private void carregarPalavras() {
         // Lendo o arquivo Ranking.txt
         File arquivo = new File("Dicionario.txt");
         String textoArquivo = "";
         try {
-            textoArquivo = new String (Files.readAllBytes(arquivo.toPath())); //convertendo pra string
+            //convertendo pra string
+            textoArquivo = new String (Files.readAllBytes(arquivo.toPath())); 
         } catch(Exception excecao) {
             System.out.println("Arquivo invalido");
         }
+        //criando uma nova palavra e add no dicionario
         String[] linhas = textoArquivo.split("\n");
         for(int i = 0; i < linhas.length; i++) {
-            palavras.add(new Palavra(linhas[i])); //criando uma nova palavra e add no dicionario
+            palavras.add(new Palavra(linhas[i]));
         }
     }
 
