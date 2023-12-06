@@ -25,9 +25,9 @@ public class Main {
         String NEGRITO_TEXT = "\u001B[1m";
         String ROXO = "\u001B[35m";
         
-        System.out.println(" - - - - - - - - - - - - - - - - - - - - -");
-        System.out.println("|    Bem-vindo(a) ao jogo T E R M O       |");
-        System.out.println(" - - - - - - - - - - - - - - - - - - - - -\n");
+        System.out.println(CIANO_TEXT + " - - - - - - - - - - - - - - - - - - - - -" + RESET);
+        System.out.println(RED_TEXT + "|    Bem-vindo(a) ao jogo T E R M O       |" + RESET);
+        System.out.println(CIANO_TEXT + " - - - - - - - - - - - - - - - - - - - - -\n" + RESET);
         System.out.println(ITALICO + CIANO_TEXT + "?   COMO FUNCIONA   ?" + RESET);
         System.out.println(ITALICO + CIANO_TEXT + "O jogo consiste em adivinhar qual a palavra de SOMENTE 5 letras" + RESET);
         System.out.println(NEGRITO_TEXT + GREEN_BG + "A " + RESET + "Faz parte da palavra e está na posição correta");
@@ -46,11 +46,11 @@ public class Main {
 
         while(true) {
             System.out.println("\033[H\033[2J"); // limpa a tela
-            System.out.println("Olá, " + nome + ", aqui estão alguns comandos que você pode usar:\n");
+            System.out.println(CIANO_TEXT + "Olá, " + RESET + NEGRITO_TEXT + nome + CIANO_TEXT + ", aqui estão alguns comandos que você pode usar:\n" + RESET);
             System.out.println(CIANO_TEXT + "iniciar " + RESET + RED_ARROW + " inicia o jogo");
             System.out.println(CIANO_TEXT + "backup " + RESET + RED_ARROW + " restaurar última partida interrompida");
             System.out.println(CIANO_TEXT + "ranking " + RESET + RED_ARROW + " mostra o ranking");
-            System.out.println(CIANO_TEXT + "jogador " + RESET + ROXO + "<nome> " + RESET + RED_ARROW + " troca o jogador");
+            System.out.println(CIANO_TEXT + "jogador " + RESET + ROXO + NEGRITO_TEXT + "<nome> " + RESET + RED_ARROW + " troca o jogador");
             System.out.println(CIANO_TEXT + "sair " + RESET + RED_ARROW + " sai do jogo\n");
 
             System.out.print(CIANO_TEXT + "Digite um comando: " + RESET);
@@ -83,11 +83,11 @@ public class Main {
                         System.out.println(excecao.getMessage());
                     }
                 }
-                System.out.println("Fim de jogo, aperte enter para continuar...");
+                System.out.println(CIANO_TEXT + "Fim de jogo, aperte enter para continuar..." + RESET);
                 scanner.nextLine();
             } else if (comando.equals("ranking")) {
                 Ranking.mostrarRanking();
-                System.out.println("Aperte enter para continuar...");
+                System.out.println(CIANO_TEXT + "Aperte enter para continuar..." + RESET);
                 scanner.nextLine();
             } else if (comando.equals("jogador")) {
                 String novoNome = argumentos[1];
@@ -95,13 +95,13 @@ public class Main {
                 jogador = new Jogador(novoNome);
                 nome = novoNome;
                 salvaveis.set(0, jogador);
-                System.out.println("Jogador trocado com sucesso!");
-                System.out.println("Aperte enter para continuar...");
+                System.out.println(CIANO_TEXT + "Jogador trocado com sucesso!" + RESET);
+                System.out.println(CIANO_TEXT + "Aperte enter para continuar..." + RESET);
                 scanner.nextLine();
             } else if (comando.equals("sair")) {
                 break;
             } else {
-                System.out.println("Comando inválido");
+                System.out.println(CIANO_TEXT + "Comando inválido" + RESET);
             }
         }
 

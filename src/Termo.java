@@ -56,7 +56,9 @@ public class Termo extends Salvavel {
         } else { // no caso de acertar a palavra
             this.jogoEmAndamento = false;
             this.jogador.incrementarPontuacao();
-            System.out.println(" (você acertou)");
+            String NEGRITO_TEXT = "\u001B[1m";
+            String RESET = "\u001B[0m";
+            System.out.println(NEGRITO_TEXT + " (você acertou!)" + RESET);
         }
         return resultado;
     }
@@ -64,22 +66,24 @@ public class Termo extends Salvavel {
     public void backup() {
         File arquivo = new File("Backup.txt");
         String textoArquivo = "";
+        String CIANO_TEXT = "\u001B[96m";
+        String RESET = "\u001B[0m";
         try {
             textoArquivo = new String (Files.readAllBytes(arquivo.toPath())); //convertendo pra string
         } catch(Exception excecao) {
-            System.out.println("Nenhum backup encontrado");
+            System.out.println(CIANO_TEXT + "Nenhum backup encontrado" + RESET);
             return;
         }
         String[] linhas = textoArquivo.split("\n");
         if(linhas.length < 3) {
-            System.out.println("Nenhum backup encontrado");
+            System.out.println(CIANO_TEXT + "Nenhum backup encontrado" + RESET);
         }
         jogador = new Jogador(linhas[0]);
         palavraSecreta = new Palavra(linhas[1]);
         tentativasRestantes = Integer.parseInt(linhas[2]);
         if(tentativasRestantes > 0) {
             jogoEmAndamento = true;
-            System.out.print("Jogo recuperado! Aperte enter para continuar.");
+            System.out.print(CIANO_TEXT + "Jogo recuperado! Aperte enter para continuar." + RESET);
         }
     }
 
