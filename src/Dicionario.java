@@ -15,7 +15,7 @@ public class Dicionario {
 
     // Método para carregar as palavras do dicionario.txt
     private void carregarPalavras() {
-        // Lendo o arquivo Ranking.txt
+        // Lendo o arquivo Dicionario.txt
         File arquivo = new File("Dicionario.txt");
         String textoArquivo = "";
         try {
