@@ -6,3 +6,5 @@ mario 10
 mateus 0
 alberto 10
 fulano 0
+LAURA 10
+maus 10
