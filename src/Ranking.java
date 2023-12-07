@@ -38,7 +38,7 @@ public class Ranking {
         return 0;
     }
 
-    public static void setPontuacao(String nome, int pontuacao) {
+    public static void setPontuacao(String nome, int novaPontuacao) {
         //percorre o arquivo até achar o nome e muda a pontuação.
         //cria um novo temp.txt vazio.
         //abre o ranking.txt, quebra em linhas depois percorre cada linha
@@ -50,23 +50,28 @@ public class Ranking {
         //apagar o ranking.txt
         //renomear o temp.txt para o ranking.txt
         
+        //abre o arquivo
         File arquivo = new File("Ranking.txt");
-        // se for um novo jogador
+        
+        // se não existir um ranking
+        // cria um novo arquivo
         if(!arquivo.exists()) {
             try {
+                //tenta criar um novo arquivo
                 arquivo.createNewFile();
                 FileWriter escritor = new FileWriter(arquivo);
-                escritor.write(nome + " " + pontuacao + "\n");
+                escritor.write(nome + " " + novaPontuacao + "\n");
                 escritor.close();
             } catch(Exception excecao) {
                 System.out.println("Erro ao criar o arquivo Ranking.txt");
             }
-
             return;
         }
 
+        // caso o arquivo existir
         File arquivoTemp = new File("Temp.txt");
         try {
+            //cria um arquivo temporario vazio
             arquivoTemp.createNewFile();
         } catch(Exception excecao) {
             System.out.println("Erro ao criar o arquivo Temp.txt");
@@ -74,38 +79,47 @@ public class Ranking {
 
         String textoArquivo = "";
         try {
+            //lê todo texto que tem dentro do ranking.txt
             textoArquivo = new String (Files.readAllBytes(arquivo.toPath())); //convertendo pra string
         } catch(Exception excecao) {
             System.out.println("Erro ao ler o arquivo Ranking.txt");
         }
 
+        //pegamos o texto de arquivos e quebro linha por linha
         String[] linhas = textoArquivo.split("\n");
         boolean jogadorEncontrado = false;
+        // quebro em linhas e percorro elas e crio um registro pra cada linha
         for(int i = 0; i < linhas.length; i++) {
             String[] registro = linhas[i].split(" ");
+            // vejo se o registro tem o nome do jogador que eu procuro 
+            // para mudar a pontuação
             if(nome.equals(registro[0])) {
-                linhas[i] = nome + " " + pontuacao;
+                linhas[i] = nome + " " + novaPontuacao;
                 jogadorEncontrado = true;
             }
         }
 
+        // crio um escritor para escrever dentro do arquivoTemp
         try {
             FileWriter escritor = new FileWriter(arquivoTemp);
+            // escrevo linha por linha
             for(int i = 0; i < linhas.length; i++) {
                 escritor.write(linhas[i] + "\n");
             }
             if(!jogadorEncontrado) {
-                escritor.write(nome + " " + pontuacao + "\n");
+                escritor.write(nome + " " + novaPontuacao + "\n");
             }
             escritor.close();
         } catch(Exception excecao) {
             System.out.println("Erro ao escrever no arquivo Temp.txt");
         }
-
+        //apago o ranking.txt
         arquivo.delete();
+        //renomeio o temp.txt para o Ranking.txt, sendo o novo Ranking
         arquivoTemp.renameTo(new File("Ranking.txt"));
     }
 
+    // momento em que peço para o ranking ser exibido
     public static void mostrarRanking() {
         // Lendo o arquivo Ranking.txt
         File arquivo = new File("Ranking.txt");
@@ -116,15 +130,21 @@ public class Ranking {
         } catch(Exception excecao) {
             System.out.println("Erro ao ler o arquivo Ranking.txt");
         }
+        // quebro o bloco de texto em linhas
         String[] linhas = textoArquivo.split("\n");
+        // crio um novo vetor com o mesmo tamanho de linhas
         String[] linhasNovas = new String[linhas.length];
+
+        //troco a ordem de nome pra pontuação
         for(int i = 0; i < linhas.length; i++) {
             String[] registro = linhas[i].split(" ");
             String registroNovo = registro[1] + " " + registro[0];
             linhasNovas[i] = registroNovo;
         }
         
+        // deixo o ranking em ordem decrescente
         Arrays.sort(linhasNovas, Collections.reverseOrder());
+        // printa as linhas
         for(int i = 0; i < linhasNovas.length; i++) {
             System.out.println(linhasNovas[i]);
         }

@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
-import javax.print.DocFlavor.STRING;
-
 public class Main {
+    // recebe uma lista com varios elementos do tipo salvavel
     public static void salvarTodos(ArrayList<Salvavel> salvaveis) {
+        // percorre a lista e salva cada um dos elementos
         for(Salvavel salvavel : salvaveis) {
             salvavel.salvar(); // polimorfismo (coisas diferentes com o mesmo comportamento {jogador, termo})
         }
@@ -25,10 +26,56 @@ public class Main {
         String CIANO_TEXT = "\u001B[96m";
         String NEGRITO_TEXT = "\u001B[1m";
         String ROXO = "\u001B[35m";
+        String [] textoBoasVindas = {" - - - - - - - - - - - - - - - - - - - - -\n"
+                       , "|    Bem-vindo(a) ao jogo T E R M O       |\n" 
+                       , " - - - - - - - - - - - - - - - - - - - - -\n"};
         
-        System.out.println(RED_TEXT + NEGRITO_TEXT + " - - - - - - - - - - - - - - - - - - - - -" + RESET);
-        System.out.println(RED_TEXT + NEGRITO_TEXT + "|    Bem-vindo(a) ao jogo T E R M O       |" + RESET);
-        System.out.println(RED_TEXT + NEGRITO_TEXT + " - - - - - - - - - - - - - - - - - - - - -\n" + RESET);
+        int R = 255, G = 255, B = 0, MAX = 60, MIN = 0;
+        String COLOR = "";      
+
+        
+        Random random = new Random();
+        for(int j = 0; j<50; j++) {
+            System.out.println("\033[H\033[2J"); // limpa a tela
+
+            for(int i = 0; i < textoBoasVindas[0].length(); i++) {
+                R += random.nextInt((MAX - (-MIN)) + 1) + (-MIN);
+                R %= 255;
+                G += random.nextInt((MAX - (-MIN)) + 1) + (-MIN);
+                G %= 255;
+                B += random.nextInt((MAX - (-MIN)) + 1) + (-MIN);
+                B %= 255;
+                
+                COLOR = "\u001B[38;2;" + R + ";" + G + ";" + B + "m";
+                System.out.print(NEGRITO_TEXT + COLOR + textoBoasVindas[0].charAt(i) + RESET);
+            }
+
+            System.out.print(NEGRITO_TEXT + COLOR + textoBoasVindas[1].charAt(0) + RESET);
+            System.out.print(textoBoasVindas[1].substring(1, textoBoasVindas[1].length() - 2));
+            System.out.println(NEGRITO_TEXT + COLOR + textoBoasVindas[1].charAt(textoBoasVindas[1].length() - 2) + RESET);
+
+            for(int i = 0; i < textoBoasVindas[2].length(); i++) {
+                R += random.nextInt((MAX - (-MIN)) + 1) + (-MIN);
+                R %= 255;
+                G += random.nextInt((MAX - (-MIN)) + 1) + (-MIN);
+                G %= 255;
+                B += random.nextInt((MAX - (-MIN)) + 1) + (-MIN);
+                B %= 255;
+
+                COLOR = "\u001B[38;2;" + R + ";" + G + ";" + B + "m";
+                System.out.print(NEGRITO_TEXT + COLOR + textoBoasVindas[2].charAt(i) + RESET);
+            }
+            
+            System.out.println();
+
+            // Wait 10ms before next iteration
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         System.out.println(ITALICO + CIANO_TEXT + "?   COMO FUNCIONA   ?" + RESET);
         System.out.println(ITALICO + CIANO_TEXT + "O jogo consiste em adivinhar qual a palavra secreta de " + NEGRITO_TEXT + "5 letras" + RESET);
         System.out.println(NEGRITO_TEXT + GREEN_BG + "A " + RESET + "Faz parte da palavra e está na posição correta");

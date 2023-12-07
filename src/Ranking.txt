@@ -5,3 +5,4 @@ Lucas 20
 mario 10
 mateus 0
 alberto 10
+fulano 0

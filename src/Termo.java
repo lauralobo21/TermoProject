@@ -98,14 +98,19 @@ public class Termo extends Salvavel {
         }
     }
 
+    // cria o arquivo de backup
     public void salvar() {
         try{
+            //crio um escritor para escrever dentro do Backup.txt
             BufferedWriter brEscritor = new BufferedWriter(new FileWriter("Backup.txt"));
         
+            // coloco o nome
             brEscritor.write(jogador.getNome()); 
             brEscritor.write("\n");
+            // coloco a palavra secreta da rodada
             brEscritor.write(palavraSecreta.getPalavra());
             brEscritor.write("\n");
+            // coloco as tentativas restantes
             brEscritor.write(String.valueOf(tentativasRestantes));
             brEscritor.close();
             

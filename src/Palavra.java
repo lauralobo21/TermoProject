@@ -3,7 +3,7 @@
 import java.lang.Exception;
 
 // classe Palavra que extende da classe Salvavel
-public class Palavra extends Salvavel {
+public class Palavra {
     // Atributo
     private String palavra ;
     
@@ -58,9 +58,6 @@ public class Palavra extends Salvavel {
         System.out.print(resultado);
         return palavra.equals(palpite); //acertou a palavra
     }
-    
-    public void salvar() {
-        // TODO
-    }
+
 }
 

@@ -33,10 +33,13 @@ public class Dicionario {
 
     public Palavra getPalavraAleatoria() {
         // criando numero aleatorio
-        int max = palavras.size() - 1;
+        int max = palavras.size() - 1; //qtd de palavras que tem no dicionario
         int min = 0;
+        // vai estar dentro de um intervalo
         int intervalo = max - min + 1;
+        //num aleatorio dentro do intervalo
         int numRandom = (int)(Math.random() * intervalo) + min;
+        // retorna a palavra que tá no indice do numaleatorio
         return palavras.get(numRandom);
     }
 }
