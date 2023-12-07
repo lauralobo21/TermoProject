@@ -32,10 +32,9 @@ public class Main {
         
         int R = 255, G = 255, B = 0, MAX = 60, MIN = 0;
         String COLOR = "";      
-
         
         Random random = new Random();
-        for(int j = 0; j<50; j++) {
+        for(int j = 0; j<100; j++) {
             System.out.println("\033[H\033[2J"); // limpa a tela
 
             for(int i = 0; i < textoBoasVindas[0].length(); i++) {
@@ -49,7 +48,6 @@ public class Main {
                 COLOR = "\u001B[38;2;" + R + ";" + G + ";" + B + "m";
                 System.out.print(NEGRITO_TEXT + COLOR + textoBoasVindas[0].charAt(i) + RESET);
             }
-
             System.out.print(NEGRITO_TEXT + COLOR + textoBoasVindas[1].charAt(0) + RESET);
             System.out.print(textoBoasVindas[1].substring(1, textoBoasVindas[1].length() - 2));
             System.out.println(NEGRITO_TEXT + COLOR + textoBoasVindas[1].charAt(textoBoasVindas[1].length() - 2) + RESET);
@@ -68,7 +66,6 @@ public class Main {
             
             System.out.println();
 
-            // Wait 10ms before next iteration
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
