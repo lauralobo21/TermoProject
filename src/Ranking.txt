@@ -8,3 +8,5 @@ alberto 10
 fulano 0
 LAURA 10
 maus 10
+ery 10
+ljogas 30

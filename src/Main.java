@@ -85,7 +85,8 @@ public class Main {
         //cria-se um novo jogo e um novo jogador
         Termo termo = new Termo();
         Jogador jogador = new Jogador(nome);
-
+        
+        //
         ArrayList<Salvavel> salvaveis = new ArrayList<Salvavel>();
         salvaveis.add(jogador);
         salvaveis.add(termo);
